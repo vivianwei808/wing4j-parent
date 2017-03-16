@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wing4j</groupId>
     <artifactId>wing4j-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
     <name>wing4j-parent</name>
     <description>this is wing4j-family of dependency third party library!</description>
-    <url>http://git.oschina.net/wing4j</url>
+    <url>https://github.com/wing4j</url>
     <licenses>
         <license>
             <name>Apache License Version 2.0</name>
@@ -28,10 +28,19 @@
         <javaee-api.version>7.0</javaee-api.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
-        <spring.version>4.1.7.RELEASE</spring.version>
-        <spring-messaging.version>4.0.9.RELEASE</spring-messaging.version>
-        <spring-batch-infrastructure.version>3.0.6.RELEASE</spring-batch-infrastructure.version>
-        <spring-data.version>1.9.0.RELEASE</spring-data.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
+        <spring-data.version>1.11.1.RELEASE</spring-data.version>
+        <reflections.version>0.9.10</reflections.version>
+        <jedis.version>2.6.2</jedis.version>
+        <c3p0.version>0.9.1.2</c3p0.version>
+        <commons-dbcp.version>1.2.2</commons-dbcp.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <h2.version>1.4.189</h2.version>
+        <mysql-connector-java.version>5.1.35</mysql-connector-java.version>
+        <jsr250-api.version>1.0</jsr250-api.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <spring-batch-infrastructure.version>3.0.7.RELEASE</spring-batch-infrastructure.version>
+        <aspect.version>1.8.9</aspect.version>
         <slf4j.version>1.7.21</slf4j.version>
         <log4jdbc.version>1.15</log4jdbc.version>
         <log4j2.version>2.7</log4j2.version>
@@ -40,9 +49,9 @@
     </properties>
     
     <scm>
-        <connection>scm:git@git.oschina.net:wing4j/wing4j-family.git</connection>
-        <developerConnection>scm:git@git.oschina.net:wing4j/wing4j-family.git</developerConnection>
-        <url>http://git.oschina.net/wing4j</url>
+        <connection>git@github.com:wing4j/wing4j-parent.git</connection>
+        <developerConnection>https://github.com/wing4j/wing4j-parent.git</developerConnection>
+        <url>https://github.com/wing4j</url>
     </scm>
 
     <dependencies>
@@ -163,7 +172,6 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -173,7 +181,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.3.2</version>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -186,8 +194,20 @@
                 <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <artifactId>commons-logging</artifactId>
                         <groupId>commons-logging</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -246,24 +266,22 @@
                 <groupId>org.springframework.batch</groupId>
                 <artifactId>spring-batch-infrastructure</artifactId>
                 <version>${spring-batch-infrastructure.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>jsr250-api</artifactId>
-                <version>1.0</version>
+                <version>${jsr250-api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.35</version>
+                <version>${mysql-connector-java.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.189</version>
-                <scope>test</scope>
+                <version>${h2.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
@@ -273,14 +291,12 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-                <scope>provided</scope>
+                <version>${javax.servlet-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.javassist</groupId>
@@ -295,26 +311,32 @@
             <dependency>
                 <groupId>commons-dbcp</groupId>
                 <artifactId>commons-dbcp</artifactId>
-                <version>1.2.2</version>
-                <scope>test</scope>
+                <version>${commons-dbcp.version}</version>
             </dependency>
             <dependency>
                 <groupId>c3p0</groupId>
                 <artifactId>c3p0</artifactId>
-                <version>0.9.1.2</version>
-                <scope>test</scope>
+                <version>${c3p0.version}</version>
             </dependency>
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.6.2</version>
-                <scope>provided</scope>
+                <version>${jedis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspect.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>1.7.4</version>
-                <scope>provided</scope>
+                <version>${aspect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -325,6 +347,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
                     <configuration>
                         <encoding>UTF-8</encoding>
                         <resources>
@@ -338,59 +361,25 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.0-beta-9</version>
-                    <configuration>
-                        <useReleaseProfile>false</useReleaseProfile>
-                        <goals>deploy</goals>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.0</version>
                     <configuration>
                         <source>${jdk.version}</source>
-                        <target>1.7</target>
+                        <target>${jdk.version}</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>2.6</version>
                     <configuration>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.16</version>
-                    <configuration>
-                        <forkMode>always</forkMode>
-                        <argLine>-Dfile.encoding=UTF-8</argLine>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.1.1</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <attach>true</attach>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>2.3</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -399,7 +388,7 @@
         <developer>
             <id>wing4j</id>
             <name>wing4j</name>
-            <email>wing4j@wing4j.com</email>
+            <email>wing4j@foxmail.com</email>
             <url/>
             <organization>org.wing4j</organization>
             <organizationUrl>http://www.wing4j.org</organizationUrl>
@@ -415,11 +404,20 @@
             <id>release</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.16</version>
+                        <configuration>
+                            <forkMode>always</forkMode>
+                            <argLine>-Dfile.encoding=UTF-8</argLine>
+                        </configuration>
+                    </plugin>
                     <!-- Source -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
+                        <version>2.1.1</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -442,6 +440,15 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <goals>deploy</goals>
+                        </configuration>
                     </plugin>
                     <!-- GPG -->
                     <plugin>
